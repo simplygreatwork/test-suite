@@ -1,0 +1,2 @@
+
+- allow each test to have asynchronous result : done(true/false)

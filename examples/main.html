@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta name="viewport" content="user-scalable=1.0,initial-scale=1.0,minimum-scale=1.0,maximum-scale=1.0">
+		<title>Ordering Example: Unit Tests</title>
+	</head>
+	<body>
+		<script type="module">
+			
+			import { test_suite_new, test_suite_run } from '../source/test-suite.js'
+			
+			let suite = test_suite_new()
+			let { it } = suite
+			
+			it('appends an item', function() {
+				return true
+			})
+			
+			it('appends an item then increments', function() {
+				return false
+			})
+			
+			it('appends an item then increments twice', function() {
+				return true
+			})
+			
+			let result = test_suite_run(suite)
+			if (result) console.log(`All tests passed.`)
+			else console.log(`Some tests failed.`)
+			
+		</script>
+	</body>
+</html>

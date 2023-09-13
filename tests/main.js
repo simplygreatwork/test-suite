@@ -1,6 +1,8 @@
 
 import { test_suite_new, test_suite_run } from '../source/test-suite.js'
+import { console_init } from 'html-console'
 
+console_init('body')
 let suite = test_suite_new()
 let { it } = suite
 

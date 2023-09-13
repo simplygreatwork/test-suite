@@ -4,18 +4,19 @@ import { test_suite_new, test_suite_run } from '../source/test-suite.js'
 let suite = test_suite_new()
 let { it } = suite
 
-it('appends an item', function() {
+it('one', function() {
 	return true
 })
 
-it('appends an item then increments', function() {
+it('two', function() {
 	return false
 })
 
-it('appends an item then increments twice', function() {
+it('three', function() {
 	return true
 })
 
-let result = test_suite_run(suite)
-if (result) console.log(`All tests passed.`)
-else console.log(`Some tests failed.`)
+test_suite_run(suite, function(passed) {
+	if (passed) console.log(`All tests passed.`)
+	else console.log(`Some tests failed.`)
+})

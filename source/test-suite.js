@@ -17,7 +17,7 @@ export function test_suite_run(suite, done) {
 export function test_suite_run_test(suite, index, done) {
 	
 	if (index === suite.tests.length) {
-		done(suite.result)
+		done(suite.passed)
 	} else {
 		if (false) console.log(`Running "${suite.tests[index].label}"`)
 		let test = suite.tests[index]

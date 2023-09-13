@@ -24,8 +24,8 @@
 				return true
 			})
 			
-			test_suite_run(suite, function(result) {
-				if (result) console.log(`All tests passed.`)
+			test_suite_run(suite, function(passed) {
+				if (passed) console.log(`All tests passed.`)
 				else console.log(`Some tests failed.`)
 			})
 			

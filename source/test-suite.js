@@ -8,16 +8,32 @@ export function test_suite_new() {
 	return { tests, it }
 }
 
-export function test_suite_run(suite) {
+export function test_suite_run(suite, done) {
 	
-	let { tests } = suite
-	let result = true
-	tests.forEach(function(each, index) {
-		let result_ = each.fn()
-		let label = each.label
-		if (label == '') label = `test ${index}`
-		console.log(`${result_ === true ? 'Passed test' : 'Failed test'} "${label}".`)
-		if (result_ === false) result = false 
-	})
-	return result
+	suite.passed = true
+	test_suite_run_test(suite, 0, done)
+}
+
+export function test_suite_run_test(suite, index, done) {
+	
+	if (index === suite.tests.length) {
+		done(suite.result)
+	} else {
+		if (false) console.log(`Running "${suite.tests[index].label}"`)
+		let test = suite.tests[index]
+		let passed = test.fn(function(passed) {
+			post_test(suite, index, done, test, passed)
+		})
+		post_test(suite, index, done, test, passed)
+	}
+}
+
+function post_test(suite, index, done, test, passed) {
+	
+	if (passed !== undefined) {
+		if (passed === false) suite.passed = false
+		let label = test.label == '' ? `test ${index}` : test.label
+		console.log(`${passed === true ? 'Passed test' : 'Failed test'} "${label}".`)
+		test_suite_run_test(suite, ++index, done)
+	}
 }
